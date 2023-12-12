@@ -1,11 +1,14 @@
 import { useState } from 'react';
 
-function Button() {
-    const [ buttonText, setButtonText ] = useState('Click me, please');
+interface ButtonProps {
+    buttonText?: string;
+}
 
-    function greet() {
-        console.log('Hello');
-        setButtonText('Hello');
+function Button(props: ButtonProps) {
+    const [ counter, setCounter ] = useState(0);
+
+    function increaseStateByOne() {
+        setCounter(counter + 1);
     }
 
     const buttonStyle = {
@@ -19,9 +22,9 @@ function Button() {
 
     return <button
         style={buttonStyle}
-        onClick={() => greet()}
+        onClick={() => increaseStateByOne()}
     >
-        {buttonText}
+        Count is {counter} - {props.buttonText}
     </button>;
 }
 export { Button };

@@ -1,9 +1,8 @@
-import { useState, CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import {Button} from './components/Button';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
 
   const headerStyle: CSSProperties = {
     color: 'red',
@@ -15,9 +14,9 @@ function App() {
     <>
       <h1 style={headerStyle}>ITSC Workshop</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <Button buttonText='Hi'/>
+        <Button />
+        <Button buttonText='Hello'/>
         <Button />
       </div>
     </>
