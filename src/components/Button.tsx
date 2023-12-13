@@ -8,7 +8,6 @@ interface ButtonProps {
 }
 
 export const Button: FC<ButtonProps> = ({buttonText, counter, onClick}) => {
-
     return <button id="my-btn" onClick={() => onClick()} >
         Count is {counter} - {buttonText}
     </button>;
