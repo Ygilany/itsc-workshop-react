@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import './Button.css';
 
 interface ButtonProps {
     buttonText: string;
     buttonColor?: string;
+    children?: React.ReactNode;
 }
 
-function Button({buttonText, buttonColor}: ButtonProps) {
+export const Button: FC<ButtonProps> = ({buttonText, buttonColor, children}) => {
     const [counter, setCounter] = useState(20);
 
     function increaseStateByOne() {
@@ -20,6 +21,6 @@ function Button({buttonText, buttonColor}: ButtonProps) {
 
     return <button style={{backgroundColor: buttonColor ? buttonColor : 'blue'}} id="my-btn" onClick={() => increaseStateByThree()} >
         Count is {counter} - {buttonText}
+        {children}
     </button>;
-}
-export { Button };
+};
