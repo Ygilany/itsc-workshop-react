@@ -36,6 +36,13 @@ function App() {
     hobbies: ['running', 'swimming', 'cycling']
   }];
 
+  function getInstitutionName(name: string) {
+    return fetch(`http://localhost:3000/institution/${name}`)
+      .then(res => res.json())
+      .then(console.log);
+  }
+
+  getInstitutionName('soit');
 
   return (
     <>
