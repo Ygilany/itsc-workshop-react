@@ -1,19 +1,22 @@
+import {useState} from 'react';
 import {Button} from './components/Button';
-import utilityFunction from './utility-functions';
 import './App.css';
 
 function App() {
-  console.log(utilityFunction.add(1, 2));
-  console.log(utilityFunction.subtract(1, 2));
+  const [counter, setCounter] = useState(40);
+
+  function increaseStateByOne() {
+    setCounter(counter => counter + 1);
+}
 
   return (
     <>
       <h1 className="new-header">ITSC Workshop</h1>
       <div className="card">
-        <Button buttonText='Add' />
-        <Button buttonText='Subtract' buttonColor='red'/>
-        <Button buttonText='Multiply'/>
-        <Button buttonText='Divide' />
+        <Button onClick={increaseStateByOne} counter={counter} buttonText='Add' />
+        <Button onClick={increaseStateByOne} counter={counter} buttonText='Subtract' />
+        <Button onClick={increaseStateByOne} counter={counter} buttonText='Multiply'/>
+        <Button onClick={increaseStateByOne} counter={counter} buttonText='Divide' />
       </div>
     </>
   );

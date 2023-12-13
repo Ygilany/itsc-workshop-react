@@ -3,22 +3,13 @@ import './Button.css';
 
 interface ButtonProps {
     buttonText: string;
-    buttonColor?: string;
+    counter: number;
+    onClick: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({buttonText, buttonColor}) => {
-    const [counter, setCounter] = useState(20);
+export const Button: FC<ButtonProps> = ({buttonText, counter, onClick}) => {
 
-    function increaseStateByOne() {
-        setCounter(counter => counter + 1);
-    }
-    function increaseStateByThree() {
-        increaseStateByOne();
-        increaseStateByOne();
-        increaseStateByOne();
-    }
-
-    return <button style={{backgroundColor: buttonColor ? buttonColor : 'blue'}} id="my-btn" onClick={() => increaseStateByThree()} >
+    return <button id="my-btn" onClick={() => onClick()} >
         Count is {counter} - {buttonText}
     </button>;
 };
