@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import './Button.css';
+import { FC } from 'react';
+import BootstrapButton from 'react-bootstrap/Button';
 
 interface ButtonProps {
     buttonText: string;
@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 
 export const Button: FC<ButtonProps> = ({buttonText, counter, onClick}) => {
-    return <button id="my-btn" onClick={() => onClick()} >
+    return <BootstrapButton variant='warning' onClick={() => onClick()} >
         Count is {counter} - {buttonText}
-    </button>;
+    </BootstrapButton>;
 };

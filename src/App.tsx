@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import {Button} from './components/Button';
-import './App.css';
 import { Person } from './components/Person';
+import BasicExample from './components/BasicExample';
+import NavBar from './components/NavBar';
 
 function App() {
   const [counter, setCounter] = useState(40);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <NavBar />
       <h1 className="new-header">ITSC Workshop</h1>
       <div className="card">
         {
@@ -46,12 +48,13 @@ function App() {
           })
         }
       </div>
+      <BasicExample />
       <div className="card">
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Add' />
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Subtract' />
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Multiply'/>
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Divide' />
-      App</div>
+      </div>
     </>
   );
 }
