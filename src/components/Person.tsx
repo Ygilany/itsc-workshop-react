@@ -2,13 +2,16 @@ import { PersonAvatar } from "./PersonAvatar";
 import { PersonName } from "./PersonName";
 
 export interface PersonProps {
-    name: string;
-    img: string;
+    person: {
+        name: string;
+        img?: string;
+    }
 }
 
-export const Person: React.FC<PersonProps> = ({ name, img }) => {
+export const Person: React.FC<PersonProps> = ({person: { name, img }}) => {
     return <>
         <PersonName name={name} />
-        <PersonAvatar name={name} img={img} />
+        { img ? <PersonAvatar name={name} img={img} /> : null }
+        {/* { img && <PersonAvatar name={name} img={img} /> } */}
     </>;
 };

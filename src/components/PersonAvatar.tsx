@@ -1,8 +1,11 @@
 import { FC } from "react";
-import { PersonProps } from "./Person";
 
+interface PersonAvatarProps {
+    name: string;
+    img: string;
+}
 
-export const PersonAvatar: FC<PersonProps> = ({ name, img }) => {
+export const PersonAvatar: FC<PersonAvatarProps> = ({ name, img }) => {
     return (
         <div>
             <img src={img} alt={name} />
