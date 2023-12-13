@@ -1,18 +1,14 @@
-import { CSSProperties } from 'react';
-import {Button} from './components/Button';
+import {Button} from './Button';
+import utilityFunction from './utility-functions';
 import './App.css';
 
 function App() {
-
-  const headerStyle: CSSProperties = {
-    color: 'red',
-    fontSize: '50px',
-    textAlign: 'center'
-  };
+  console.log(utilityFunction.add(1, 2));
+  console.log(utilityFunction.subtract(1, 2));
 
   return (
     <>
-      <h1 style={headerStyle}>ITSC Workshop</h1>
+      <h1 className="new-header">ITSC Workshop</h1>
       <div className="card">
         <Button buttonText='Hi'/>
         <Button />
