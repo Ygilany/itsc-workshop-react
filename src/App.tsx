@@ -1,4 +1,4 @@
-import {Button} from './Button';
+import {Button} from './components/Button';
 import utilityFunction from './utility-functions';
 import './App.css';
 
@@ -10,10 +10,10 @@ function App() {
     <>
       <h1 className="new-header">ITSC Workshop</h1>
       <div className="card">
-        <Button buttonText='Hi'/>
-        <Button />
-        <Button buttonText='Hello'/>
-        <Button />
+        <Button buttonText='Add'/>
+        <Button buttonText='Subtract' buttonColor='red'/>
+        <Button buttonText='Multiply'/>
+        <Button buttonText='Divide' />
       </div>
     </>
   );
