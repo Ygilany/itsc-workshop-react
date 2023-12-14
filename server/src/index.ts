@@ -1,10 +1,8 @@
 import express from 'express';
-import { database } from './database';
 import cors from 'cors';
 import {rateLimit} from 'express-rate-limit';
-import config from 'config'
-
-import sequelize from './repo';
+import config from 'config';
+import {router} from './modules/orgs/routes';
 
 const app = express();
 const port = config.get(`port`) as number; //
@@ -21,20 +19,7 @@ app.use(
   rateLimit(rateLimitOptions)
 );
 
-app.get('/institution', async(req, res) => {
-  const result = await sequelize.query(`select * from orgs`);
-
-  res.status(200).json(result);
-})
-
-app.get('/institution/:institution', (req, res) => {
-   const institution = req.params.institution;
-
-  if (!database[institution]) {
-    return res.status(404).json({ error: 'institution not found' });
-  }
-  res.status(200).json(database[institution]);
-})
+app.use(router);
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}`)
