@@ -12,8 +12,19 @@ app.use(
 );
 
 app.get('/institution/:institution', (req, res) => {
+  console.log(`my params are`, req.params);
+  console.log(`my query is`, req.query);
+  const myInfo = req.query;
+  console.log(`my name is, ${JSON.stringify(myInfo)}`);
+  console.log(`my name is`, myInfo);
+
+  console.log(`my name is ${req.query.name} and my age is ${req.query.age}`);
+
   const institution = req.params.institution;
-  console.log(institution)
+
+  if (!database[institution]) {
+    return res.status(404).json({ error: 'institution not found' });
+  }
   res.status(200).json(database[institution]);
 })
 
