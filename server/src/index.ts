@@ -1,26 +1,30 @@
 import express from 'express';
 import { database } from './database';
 import cors from 'cors';
+import {rateLimit} from 'express-rate-limit';
+import config from 'config'
 
 const app = express();
-const port = 3000;
+const port = config.get(`port`) as number; //
+
+const rateLimitOptions = {
+  windowMs: config.get(`rate_limit.windowMs`), // 15 minutes
+  max: config.get(`rate_limit.max`) // limit each IP to 100 requests per windowMs
+};
 
 app.use(
   cors({origin: '*'}),
   express.urlencoded({ extended: true }),
-  express.json()
+  express.json(),
+  rateLimit(rateLimitOptions)
 );
 
+app.get('/institution', (req, res) => {
+  res.status(200).json(database);
+})
+
 app.get('/institution/:institution', (req, res) => {
-  console.log(`my params are`, req.params);
-  console.log(`my query is`, req.query);
-  const myInfo = req.query;
-  console.log(`my name is, ${JSON.stringify(myInfo)}`);
-  console.log(`my name is`, myInfo);
-
-  console.log(`my name is ${req.query.name} and my age is ${req.query.age}`);
-
-  const institution = req.params.institution;
+   const institution = req.params.institution;
 
   if (!database[institution]) {
     return res.status(404).json({ error: 'institution not found' });
