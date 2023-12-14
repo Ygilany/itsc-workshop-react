@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {Button} from './components/Button';
 import { Person } from './components/Person';
-import BasicExample from './components/BasicExample';
 import NavBar from './components/NavBar';
+import { CalculatorPage } from './pages/Calculator';
 
 function App() {
   const [counter, setCounter] = useState(40);
@@ -47,7 +47,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <h1 className="new-header">ITSC Workshop</h1>
+      <h1>ITSC Workshop</h1>
+      <CalculatorPage />
       <div className="card">
         {
           personsInfo.map((person, index) => {
@@ -55,7 +56,6 @@ function App() {
           })
         }
       </div>
-      <BasicExample />
       <div className="card">
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Add' />
         <Button onClick={increaseStateByOne} counter={counter} buttonText='Subtract' />
