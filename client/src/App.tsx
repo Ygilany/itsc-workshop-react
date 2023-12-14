@@ -1,67 +1,40 @@
-import {useState} from 'react';
-import {Button} from './components/Button';
-import { Person } from './components/Person';
+import { useState, useEffect } from 'react';
+import { Institution } from './components/Institution';
 import NavBar from './components/NavBar';
-import { CalculatorPage } from './pages/Calculator';
+import { InputGroup, Form } from 'react-bootstrap';
 
 function App() {
-  const [counter, setCounter] = useState(40);
+  const [institutions, setInstitutions] = useState<{ [key: string]: { name: string; website: string; img: string } }>({});
 
-  function increaseStateByOne() {
-    setCounter(counter => counter + 1);
-  }
-
-  const personsInfo = [{
-    name: 'John Doe',
-    img: 'https://via.placeholder.com/150',
-    age: 20,
-    address: '123 Main St.',
-    phone: '555-555-5555',
-    email: 'yashy@kjasgdfk.com',
-    hobbies: ['running', 'swimming', 'cycling']
-  }, {
-    name: 'Jane Doe',
-    img: 'https://via.placeholder.com/150',
-    age: 20,
-    address: '123 Main St.',
-    phone: '555-555-5555',
-    email: 'yashy@kjasgdfk.com',
-    hobbies: ['running', 'swimming', 'cycling']
-  }, {
-    name: 'Sally Doe',
-    age: 20,
-    address: '123 Main St.',
-    phone: '555-555-5555',
-    email: 'yashy@kjasgdfk.com',
-    hobbies: ['running', 'swimming', 'cycling']
-  }];
-
-  function getInstitutionName(name: string) {
-    return fetch(`http://localhost:3000/institution/${name}`)
+  function getAllInstitutions() {
+    return fetch('http://localhost:3000/institution')
       .then(res => res.json())
-      .then(console.log);
+      .then(setInstitutions);
   }
 
-  getInstitutionName('soit');
+  useEffect(() => {
+    getAllInstitutions();
+  }, []);
 
   return (
     <>
       <NavBar />
       <h1>ITSC Workshop</h1>
-      <CalculatorPage />
       <div className="card">
         {
-          personsInfo.map((person, index) => {
-            return <Person key={`person-${index}`} person={person} />;
+          Object.keys(institutions).map((key, index) => {
+            return <Institution key={`person-${index}`} institution={institutions[key]} />;
           })
         }
       </div>
-      <div className="card">
-        <Button onClick={increaseStateByOne} counter={counter} buttonText='Add' />
-        <Button onClick={increaseStateByOne} counter={counter} buttonText='Subtract' />
-        <Button onClick={increaseStateByOne} counter={counter} buttonText='Multiply'/>
-        <Button onClick={increaseStateByOne} counter={counter} buttonText='Divide' />
-      </div>
+      <InputGroup className="mb-3">
+        <Form.Control
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </InputGroup>
+
     </>
   );
 }
