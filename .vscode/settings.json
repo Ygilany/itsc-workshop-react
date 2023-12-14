@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "dbsqlite",
+            "database": "${workspaceFolder:itsc-workshop-react}/server/db/db.sqlite"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "development",
+            "database": "${workspaceFolder:itsc-workshop-react}/server/db/development.sqlite"
+        }
+    ]
+}

@@ -4,6 +4,8 @@ import cors from 'cors';
 import {rateLimit} from 'express-rate-limit';
 import config from 'config'
 
+import sequelize from './repo';
+
 const app = express();
 const port = config.get(`port`) as number; //
 
@@ -19,8 +21,10 @@ app.use(
   rateLimit(rateLimitOptions)
 );
 
-app.get('/institution', (req, res) => {
-  res.status(200).json(database);
+app.get('/institution', async(req, res) => {
+  const result = await sequelize.query(`select * from orgs`);
+
+  res.status(200).json(result);
 })
 
 app.get('/institution/:institution', (req, res) => {
